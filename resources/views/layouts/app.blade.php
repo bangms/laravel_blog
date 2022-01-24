@@ -250,7 +250,7 @@
             <div class="signup">
                 <div class="center">
                   {{-- <a class="form-title" id="login" href="{{ '/login' }}"><span>or</span>Sign up</a> --}}
-                  <form method="POST" class="form-title" id="signup" action="{{ route('register') }}">
+                  <form method="POST" class="form-title" id="signup" action="/register">
                     <div id="reg">
                         <span>or</span>Sign up
                     </div>
@@ -271,7 +271,7 @@
             </div>
             <div class="login">
                 <div class="center">
-                <form method="POST" class="form-title" id="login" action="{{ route('login') }}">
+                <form method="POST" class="form-title" id="login" action="/login">
                     <div id="log">
                         <span>or</span>Log in
                     </div>

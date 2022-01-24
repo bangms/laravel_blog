@@ -102,9 +102,10 @@
             
             <nav class="navMenu">
                 <a href="{{ url('/') }}">home</a>
-                <a href="{{ url('/blog') }}">blog</a>
+                <a href="{{ url('/blogs') }}">blog</a>
                 <a href="{{ url('/login') }}">login</a>
-                @if (Route::has('login'))
+                <a href="{{ route('register') }}">register</a>
+                {{-- @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/mypage') }}">mypage</a>
                     @else
@@ -114,7 +115,7 @@
                             <a href="{{ route('register') }}">register</a>
                         @endif
                     @endauth
-                @endif
+                @endif --}}
                 <div class="dot"></div>
             </nav>
         </div>

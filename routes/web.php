@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardController;
-
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome');});
 Route::get('/home', function () { return view('welcome');});
-Route::get('/blog/board', function () { return view('blog.board');});
+// Route::get('/blog/board', function () { return view('blog.board');});
+// Route::resource('/blog', [\App\Http\Controllers\BoardController::class, 'create']);
+// Route::resource('blogs', BoardController::class@index);
+Route::get('/blogs', [\App\Http\Controllers\BoardController::class, 'index']);
 
-Route::resource('/blog', BoardController::class);
-
-// resour
-Route::get('/home', function () { return view('welcome');});
-//  Route::resource('/blog/board', 'BoardController@create');
 
 Auth::routes();
 

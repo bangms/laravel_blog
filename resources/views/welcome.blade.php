@@ -94,7 +94,7 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
+            {{-- @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
@@ -106,13 +106,14 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif --}}
             
             <nav class="navMenu">
                 <a href="{{ url('/') }}">home</a>
-                <a href="{{ url('/blog') }}">blog</a>
+                <a href="{{ url('/blogs') }}">blog</a>
                 <a href="{{ url('/login') }}">login</a>
-                @if (Route::has('login'))
+                <a href="{{ url('/register') }}">register</a>
+                {{-- @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/mypage') }}">mypage</a>
                     @else
@@ -122,9 +123,12 @@
                             <a href="{{ route('register') }}">register</a>
                         @endif
                     @endauth
-                @endif
+                @endif --}}
                 <div class="dot"></div>
             </nav>
         </div>
     </body>
 </html>
+<script type="text/javascript">
+    console.log("welcome");
+</script>

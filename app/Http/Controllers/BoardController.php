@@ -2,29 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 use App\Http\Resources\BoardResource;
+
 use App\Models\Board;
+
+use Auth;
 
 class BoardController extends Controller
 {
+    public function __construct()
+    {
+        // 인증에 대한 미들웨어
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+
      */
     public function index() // 데이터 목록 가져오기
     {
         //return Board::all();
         // $allBoards = Board::all(); // 데이터 다 가져오기
+        // dd(Board::select('id','writer','subject','content','created_at')->get());
         // return allBorads;
         // return Board::select('id','writer','subject','content','created_at')->get();
         $allBoards = Board::select('id','writer','subject','content','created_at')->get();
         $filteredBoards = BoardResource::collection($allBoards);
-        return $filteredBoards; // 왜 변수에 담으면 에러나지 ㅠ
+        
+        return view('blog.list', [
+            'postList' => $filteredBoards
+        ]);
+        
+        // return view('blog.list', [
+        //     'postList' => $posts
+        // ]);
 
         //return BoardResource::collection(Board::all());
+        //return view('blog/board');
 
     }
 
@@ -33,9 +55,12 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(array $data) // 새 데이터를 만드는 화면을 반환
+    public function create() // 새 데이터를 만드는 화면을 반환
     {
-       return view('blog/board');
+     //    return view('blog/board');
+        // var_dump("create 메소드로 왔음"); 출력 dd / var_dump / print_r
+        // print_r("create 메소드");
+        return view('blog/board');
     }
 
     /**
@@ -46,7 +71,14 @@ class BoardController extends Controller
      */
     public function store(Request $request) // 새 데이터를 추가 DB에
     {
-        //
+        print_r($request->all());
+       $board = new Board();
+       $board->writer = 'user01';
+       $board->subject = request('subject');
+       $board->content = request('content');
+       $board->save();
+
+       return redirect('/blogs');
     }
 
     /**
@@ -72,7 +104,7 @@ class BoardController extends Controller
      */
     public function edit($id) // 기존 데이터를 수정하는 화면을 반환
     {
-        return view('blog/create');
+        return view('blog/board');
     }
 
     /**
